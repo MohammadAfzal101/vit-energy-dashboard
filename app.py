@@ -114,6 +114,8 @@ st.markdown("""
     [data-testid="stSidebar"] h3,
     [data-testid="stSidebar"] label {
         color: white !important;
+        background: none !important;
+        -webkit-text-fill-color: white !important;
     }
     
     [data-testid="stSidebar"] [data-baseweb="select"] *,
@@ -129,11 +131,12 @@ st.markdown("""
     }
     
     [data-testid="stSidebar"] [data-baseweb="radio"] {
-        background: rgba(255, 255, 255, 0.1);
+        background: rgba(255, 255, 255, 0.15);
         padding: 0.8rem;
         border-radius: 10px;
         margin: 0.3rem 0;
         transition: all 0.3s ease;
+        border: 1px solid rgba(255,255,255,0.4);
     }
     
     [data-testid="stSidebar"] [data-baseweb="radio"]:hover {
@@ -336,7 +339,7 @@ with st.sidebar:
             <p style='color: rgba(255,255,255,0.8); font-size: 0.9rem; margin-top: 0.2rem; font-weight: 500;'>Campus Dashboard</p>
         </div>
     """, unsafe_allow_html=True)
-    st.title("Navigation")
+    st.markdown("<h3 style='margin-bottom: 0.5rem;'>Navigation</h3>", unsafe_allow_html=True)
     
     page = st.radio(
         "Select View",
