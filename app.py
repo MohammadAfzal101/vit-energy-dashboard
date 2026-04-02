@@ -309,14 +309,13 @@ def load_data():
         
         return hourly_data, daily_data, facility_data
     except FileNotFoundError:
-        st.warning("⚠️ Data files not found. Generating mock data for the first run...")
-        import os
-        from energy_data_generator import generate_all_data
-        
-        os.makedirs('data', exist_ok=True)
-        generate_all_data()
-        st.success("✅ Data generated successfully!")
-        
+        with st.spinner("Initializing smart grid data connections..."):
+            import os
+            from energy_data_generator import generate_all_data
+            
+            os.makedirs('data', exist_ok=True)
+            generate_all_data()
+            
         # Load the newly generated data
         hourly_data = pd.read_csv('data/hourly_energy_data.csv')
         hourly_data['timestamp'] = pd.to_datetime(hourly_data['timestamp'])
