@@ -130,7 +130,10 @@ class VITEnergyDataGenerator:
                 'wind_generation_kwh': round(wind_generation, 2),
                 'grid_consumption_kwh': round(grid_consumption, 2),
                 'carbon_emissions_kg': round(grid_consumption * 0.82, 2),
-                'cost_inr': round(grid_consumption * 7.5 + (solar_generation + wind_generation) * 1.5, 2),
+                # TANGEDCO Commercial Tariff Approximation
+                # Base Rate ~₹8.5/kWh. Adjusted for Time-of-Day (Peak +20%, Off-peak -5%)
+                # Blended average grid rate roughly ₹8.95 / kWh + fixed demand charges
+                'cost_inr': round(grid_consumption * 8.95 + (solar_generation + wind_generation) * 1.2, 2),
                 'renewable_percentage': round((solar_generation + wind_generation) / daily_consumption * 100, 2)
             })
         
